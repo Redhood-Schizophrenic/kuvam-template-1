@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern color palette */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    /* Primary - Deep blue with high saturation */
+    --primary: 222 85% 45%;
+    --primary-foreground: 210 40% 98%;
+    
+    /* Secondary - Vibrant teal */
+    --secondary: 187 85% 40%;
+    --secondary-foreground: 210 40% 98%;
+    
+    /* Accent - Warm coral */
+    --accent: 12 85% 60%;
+    --accent-foreground: 210 40% 98%;
+    
+    /* Muted tones */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    /* Card styles */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    
+    /* Popover styles */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    /* Border and input styles */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 85% 45%;
+
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Radius */
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    
+    --primary: 217 85% 55%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 187 85% 45%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --accent: 12 85% 65%;
+    --accent-foreground: 210 40% 98%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-lg 
+           shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground font-semibold py-3 px-6 rounded-lg
+           shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-card rounded-xl shadow-lg h-auto hover:shadow-xl transition-shadow duration-300
+           border border-border/50 overflow-hidden;
+  }
+
+  .section-title {
+    @apply text-4xl sm:text-5xl font-bold text-center mb-8 sm:mb-12
+           bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  /* Navbar specific styles */
+  .nav-link {
+    @apply text-foreground/60 hover:text-foreground transition-colors duration-200
+           relative after:absolute after:bottom-0 after:left-0 after:right-0
+           after:h-[2px] after:bg-gradient-to-r after:from-primary after:via-secondary
+           after:to-accent after:scale-x-0 hover:after:scale-x-100
+           after:transition-transform after:duration-300;
+  }
+  
+  .nav-link-active {
+    @apply text-foreground after:scale-x-100;
+  }
+  
+  /* Enhanced gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent
+           bg-clip-text text-transparent animate-gradient-x;
+  }
+  
+  /* Glass effect */
+  .glass {
+    @apply bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out;
+}
+
+@layer utilities {
+  /* Gradient animation */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-x {
+    animation: gradient-x 15s ease infinite;
+    background-size: 200% 200%;
+  }
+}
+
